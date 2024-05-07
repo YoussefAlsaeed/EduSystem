@@ -1,6 +1,7 @@
 package controllers;
 
 import models.User;
+import requests.UserRegisterationRequest;
 import services.AuthService;
 
 import javax.ws.rs.*;
@@ -17,7 +18,7 @@ public class AuthController {
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response registerUser(User user) {
+    public Response registerUser(UserRegisterationRequest user) {
         try {
             if (authService.registerUser(user)) {
                 return Response.status(Response.Status.CREATED).entity(user).build();

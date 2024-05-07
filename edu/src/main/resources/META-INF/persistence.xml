@@ -2,6 +2,11 @@
 
   <persistence-unit name="ejb_pu" transaction-type="JTA">
     <class>models.User</class>
+    <class>models.Admin</class>
+    <class>models.Instructor</class>
+    <class>models.Student</class>
+
+
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/edu"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

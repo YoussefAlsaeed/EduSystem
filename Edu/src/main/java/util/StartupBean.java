@@ -1,6 +1,7 @@
 package util;
 
 import models.User;
+import requests.UserRegisterationRequest;
 import services.AuthService;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,7 @@ public class StartupBean {
 
     @PostConstruct
     public void init() {
-        User adminUser = new User();
+        UserRegisterationRequest adminUser = new UserRegisterationRequest();
         adminUser.setName("admin");
         adminUser.setEmail("admin@admin.com");
         adminUser.setPassword("admin");

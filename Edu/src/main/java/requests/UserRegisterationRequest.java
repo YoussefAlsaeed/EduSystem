@@ -1,42 +1,29 @@
-package models;
+package requests;
 
-import javax.persistence.*;
+import models.User;
 
-@Entity
-@Table(name = "Users")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Dtype")
-public class User {
+public class UserRegisterationRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UserID")
-    private int userID;
-    @Column(name = "Name")
     private String name;
 
-    @Column(name = "Email", unique = true)
     private String email;
 
-    @Column(name = "Password")
     private String password;
 
-    @Column(name = "Affiliation")
     private String affiliation;
 
-    @Column(name = "Bio")
     private String bio;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "UserType")
-    private UserType userType;
+    private User.UserType userType;
 
-    public int getUserID() {
-        return userID;
+    private int YearsOfExperience;
+
+    public int getYearsOfExperience() {
+        return YearsOfExperience;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setYearsOfExperience(int yearsOfExperience) {
+        YearsOfExperience = yearsOfExperience;
     }
 
     public String getName() {
@@ -79,17 +66,11 @@ public class User {
         this.bio = bio;
     }
 
-    public UserType getUserType() {
+    public User.UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(User.UserType userType) {
         this.userType = userType;
-    }
-
-    public enum UserType {
-        Admin,
-        Instructor,
-        Student
     }
 }

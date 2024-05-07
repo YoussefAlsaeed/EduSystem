@@ -1,9 +1,12 @@
 package services;
 
+import models.Admin;
+import models.Instructor;
+import models.Student;
 import models.User;
+import requests.UserRegisterationRequest;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +21,7 @@ public class AuthService {
         entityManager = emf.createEntityManager();
     }
 
-    public boolean registerUser(User user) {
+    public boolean registerUser(UserRegisterationRequest user) {
         try {
             entityManager.getTransaction().begin();
 
@@ -32,7 +35,31 @@ public class AuthService {
                 return false;
             }
 
-            entityManager.persist(user);
+            User persistUser;
+
+            switch (user.getUserType()) {
+                case Admin:
+                    persistUser = new Admin();
+                    break;
+                case Instructor:
+                    persistUser = new Instructor();
+                   ((Instructor) persistUser).setYearsOfExperience(user.getYearsOfExperience());
+                    break;
+                case Student:
+                    persistUser = new Student();
+                    break;
+                default:
+                    System.out.println("Unsupported user type!");
+                    return false;
+            }
+
+            persistUser.setName(user.getName());
+            persistUser.setEmail(user.getEmail());
+            persistUser.setAffiliation(user.getAffiliation());
+            persistUser.setPassword(user.getPassword());
+            persistUser.setBio(user.getBio());
+
+            entityManager.persist(persistUser);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception e) {
