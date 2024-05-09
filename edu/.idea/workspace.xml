@@ -10,20 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a2b3e26-0ebc-4997-9cce-7b2d9a70870f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/controllers/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/Instructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/repositories/UserRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/requests/UserRegistrationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a3bb635e-abf8-44c0-8035-e22e24cb6a5a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a3bb635e-abf8-44c0-8035-e22e24cb6a5a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UserMgmtMs/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +142,7 @@
       <workItem from="1715007904255" duration="3914000" />
       <workItem from="1715012918742" duration="26651000" />
       <workItem from="1715188119340" duration="603000" />
-      <workItem from="1715205579673" duration="11636000" />
+      <workItem from="1715205579673" duration="13445000" />
     </task>
     <servers />
   </component>
