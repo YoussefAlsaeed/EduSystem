@@ -18,7 +18,7 @@
       </properties>
 
   <dependencies>
-                <dependency>
+      <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
       <version>8.0.1</version>
@@ -54,6 +54,23 @@
           <artifactId>mysql-connector-java</artifactId>
           <version>8.0.33</version>
       </dependency>
+
+      <dependency>
+          <groupId>io.swagger.core.v3</groupId>
+          <artifactId>swagger-core</artifactId>
+          <version>2.1.7</version> <!-- Or the latest version -->
+      </dependency>
+      <dependency>
+          <groupId>org.webjars</groupId>
+          <artifactId>swagger-ui</artifactId>
+          <version>3.50.0</version> <!-- Or the latest version -->
+      </dependency>
+      <dependency>
+          <groupId>io.swagger</groupId>
+          <artifactId>swagger-jaxrs</artifactId>
+          <version>1.5.18</version>
+      </dependency>
+
 
   </dependencies>
 

@@ -58,6 +58,7 @@ public class AuthService {
             persistUser.setAffiliation(user.getAffiliation());
             persistUser.setPassword(user.getPassword());
             persistUser.setBio(user.getBio());
+            persistUser.setUserType(user.getUserType());
 
             entityManager.persist(persistUser);
             entityManager.getTransaction().commit();

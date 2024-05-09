@@ -10,17 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a2b3e26-0ebc-4997-9cce-7b2d9a70870f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Instructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/requests/UserRegisterationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/controllers/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/Instructor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/repositories/UserRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/requests/UserRegistrationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserMgmtMs/src/main/java/com/usermgmt/usermgmtms/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/StartupBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/StartupBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a3bb635e-abf8-44c0-8035-e22e24cb6a5a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a3bb635e-abf8-44c0-8035-e22e24cb6a5a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,28 +48,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.291954",
-    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.291954&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="JBoss/WildFly 18.1.2.Final-redhat-00001" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 18.1.2.Final-redhat-00001" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/edu" />
@@ -150,7 +153,9 @@
       <option name="presentableId" value="Default" />
       <updated>1715007903315</updated>
       <workItem from="1715007904255" duration="3914000" />
-      <workItem from="1715012918742" duration="23533000" />
+      <workItem from="1715012918742" duration="26651000" />
+      <workItem from="1715188119340" duration="603000" />
+      <workItem from="1715205579673" duration="11636000" />
     </task>
     <servers />
   </component>

@@ -1,14 +1,18 @@
 package controllers;
 
-import models.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import requests.UserRegisterationRequest;
 import services.AuthService;
 
+import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/auth")
+@Stateless
+@Api(value = "Auth service")
 
 public class AuthController {
 
@@ -16,6 +20,7 @@ public class AuthController {
 
     @POST
     @Path("/register")
+    @ApiOperation(value = "Retrieve some example content", notes = "Return some json to the client")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response registerUser(UserRegisterationRequest user) {
