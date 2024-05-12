@@ -17,10 +17,10 @@ public class UserMgmtController {
     private UserMgmtService userMgmtService;
 
     @GetMapping("/{type}/{id}")
-    public ResponseEntity<User> getUserInfo(@PathVariable("type") User.UserType type, @PathVariable("id") Long id) {
+    public ResponseEntity<String> getUserInfo(@PathVariable("type") User.UserType type, @PathVariable("id") Long id) {
         User user = userMgmtService.getUserInfo(type, id);
         if (user != null) {
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok("Exists");
         } else {
             return ResponseEntity.notFound().build();
         }
