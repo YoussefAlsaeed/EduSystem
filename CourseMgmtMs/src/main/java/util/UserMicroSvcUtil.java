@@ -4,7 +4,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
-public class MicroSvcUtil {
+public class UserMicroSvcUtil {
 
     private String userMgmtBaseUrl = "http://localhost:8085";
 

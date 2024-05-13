@@ -8,6 +8,8 @@ import requests.DeleteCourseRequest;
 import services.CourseService;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.jms.JMSException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,7 +21,8 @@ import java.util.List;
 
 public class CourseController {
 
-    private CourseService courseService = new CourseService();
+    @Inject
+    private CourseService courseService ;
 
     @POST
     @Path("/createCourse")
@@ -158,7 +161,7 @@ public class CourseController {
     @GET
     @Path("/sortByRatings")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response sortByRatings() {
+    public Response sortByRatings() throws JMSException {
         List<Course> courses = courseService.sortByRatings();
         return Response.status(Response.Status.OK)
                 .entity(courses)

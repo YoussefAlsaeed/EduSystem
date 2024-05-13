@@ -43,9 +43,4 @@ public class AuthController {
                     .body("{\"message\": \"An error occurred during login.\"}");
         }
     }
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello, World!";
-    }
 }

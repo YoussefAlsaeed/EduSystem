@@ -1,19 +1,23 @@
 package services;
 
 import models.*;
-import util.MicroSvcUtil;
+import util.UserMicroSvcUtil;
+
+import javax.ejb.Stateless;
+import javax.jms.JMSException;
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Stateless
 public class CourseService {
 
     private EntityManager entityManager;
-    private MicroSvcUtil microSvcUtil;
+    private UserMicroSvcUtil userMicroSvcUtil;
 
     public CourseService() {
-        microSvcUtil = new MicroSvcUtil();
+        userMicroSvcUtil = new UserMicroSvcUtil();
         String password = System.getenv("MYSQL_PASSWORD");
         Map<String, String> properties = new HashMap<>();
         properties.put("javax.persistence.jdbc.password",password);
@@ -29,7 +33,7 @@ public class CourseService {
             return false;
         }
 
-        if (microSvcUtil.isUserInstructor(course.getInstructorId())) {
+        if (userMicroSvcUtil.isUserInstructor(course.getInstructorId())) {
             entityManager.getTransaction().begin();
             course.setContentReviewed(Course.ContentReviewStatus.PENDING);
             course.setRating(0);
@@ -58,7 +62,7 @@ public class CourseService {
             return false;
         }
         //Checking if user is authorized
-        if (!microSvcUtil.isUserAdmin(adminId) ) {
+        if (!userMicroSvcUtil.isUserAdmin(adminId) ) {
             System.out.println("User is not authorized to edit this course.");
             return false;
         }
@@ -78,7 +82,7 @@ public class CourseService {
             return false;
         }
 
-        if (!microSvcUtil.isUserAdmin(adminId)) {
+        if (!userMicroSvcUtil.isUserAdmin(adminId)) {
             System.out.println("User is not authorized to delete this course.");
             return false;
         }
@@ -127,7 +131,7 @@ public class CourseService {
     }
 
     // for student + instructor
-    public List<Course> sortByRatings() {
+    public List<Course> sortByRatings() throws JMSException {
         Query query = entityManager.createQuery("SELECT c FROM Course c WHERE c.contentReviewed = :status ORDER BY c.rating DESC", Course.class);
         query.setParameter("status", Course.ContentReviewStatus.ACCEPTED);
         return query.getResultList();
@@ -150,7 +154,7 @@ public class CourseService {
         }
 
         // Checking if user is authorized
-        if (!microSvcUtil.isUserAdmin(adminId)) {
+        if (!userMicroSvcUtil.isUserAdmin(adminId)) {
             System.out.println("User is not authorized to reject course content.");
             return false;
         }
@@ -171,7 +175,7 @@ public class CourseService {
         }
 
         // Checking if user is authorized
-        if (!microSvcUtil.isUserAdmin(adminId)) {
+        if (!userMicroSvcUtil.isUserAdmin(adminId)) {
             System.out.println("User is not authorized to reject course content.");
             return false;
         }
@@ -218,7 +222,7 @@ public class CourseService {
     public boolean addReview(Reviews review) {
         Course course = entityManager.find(Course.class, review.getCourseId());
 
-        if (!microSvcUtil.isUserStudent(review.getStudentId())) {
+        if (!userMicroSvcUtil.isUserStudent(review.getStudentId())) {
             System.out.println("User is not authorized to add review to course .");
             return false;
         }
