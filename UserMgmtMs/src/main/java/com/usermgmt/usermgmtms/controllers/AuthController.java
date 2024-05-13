@@ -29,7 +29,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/login")
+    @GetMapping ("/login")
     public ResponseEntity<?> loginUser(@RequestParam("email") String email, @RequestParam("password") String password) {
         try {
             if (authService.loginUser(email, password)) {

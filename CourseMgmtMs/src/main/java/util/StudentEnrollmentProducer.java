@@ -17,7 +17,6 @@ public class StudentEnrollmentProducer {
     private Queue queue;
 
     public void sendMessage(EnrollmentMessage enrollment) throws JMSException {
-        System.out.println(queue.getQueueName());
         Session session;
         MessageProducer messageProducer;
         try (Connection connection = connectionFactory.createConnection()) {
