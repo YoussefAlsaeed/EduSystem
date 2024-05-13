@@ -6,5 +6,8 @@ import lombok.Data;
 public class CourseEditRequest {
     private Long courseId;
     private String newName;
+    private String newDuration;
+    private String newCategory;
+    private int newCapacity;
     private Long adminId;
 }

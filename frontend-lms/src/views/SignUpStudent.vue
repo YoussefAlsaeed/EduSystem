@@ -1,4 +1,6 @@
 <template>
+    <Nav />
+
     <div class="signup">
         <div class="hero is-info">
             <div class="hero-body has-text-centered">
@@ -73,8 +75,12 @@
 
 <script>
 import { userMicroSvc } from '../apiClients.js';
+import Nav from '@/components/Nav'
 
 export default {
+    components: {
+        Nav
+    },
     data() {
         return {
             name: '',

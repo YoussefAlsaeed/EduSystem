@@ -7,6 +7,9 @@ import LogIn from '../views/Login.vue'
 import Admin from '../views/Admin.vue'
 import Instructor from '../views/Instructor.vue'
 import Student from '../views/Student.vue'
+import UserManagement from '../views/UserManagement.vue'
+import CourseManagement from '../views/CourseManagement.vue'
+
 
 const routes = [
   {
@@ -50,6 +53,18 @@ const routes = [
     path: '/student/:id',
     name: 'student',
     component: Student,
+    props: true
+  },
+  {
+    path: '/UserManagement/:id',
+    name: 'UserManagement',
+    component: UserManagement,
+    props: true
+  },
+  {
+    path: '/CourseManagement/:id',
+    name: 'CourseManagement',
+    component: CourseManagement,
     props: true
   }
 ]

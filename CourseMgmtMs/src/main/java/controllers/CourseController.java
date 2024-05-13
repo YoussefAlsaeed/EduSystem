@@ -45,11 +45,11 @@ public class CourseController {
     @Path("/editCourse")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response editCourseName(CourseEditRequest request) {
-        boolean updated = courseService.editCourseName(request.getCourseId(), request.getNewName(), request.getAdminId());
+    public Response editCourse(CourseEditRequest request) {
+        boolean updated = courseService.editCourse(request);
         if (updated) {
             return Response.status(Response.Status.OK)
-                    .entity("Course name updated successfully.")
+                    .entity("Course updated successfully.")
                     .build();
         } else {
             return Response.status(Response.Status.FORBIDDEN)

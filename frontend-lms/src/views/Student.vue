@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { userMicroSvc } from '../apiClients.js';
+
 export default {
     data() {
         return {
@@ -24,11 +26,19 @@ export default {
         };
     },
     created() {
-        this.user = JSON.parse(this.$route.query.userData);
+        const id = this.$route.params.id;
+        const type = 'Student';
+
+        userMicroSvc.get(`/users/${type}/${id}`)
+            .then(response => {
+                this.user = response.data;
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 }
 </script>
 
 <style>
-/* Add your styles here */
 </style>

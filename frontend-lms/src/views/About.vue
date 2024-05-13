@@ -1,4 +1,6 @@
 <template>
+  <Nav/>
+
   <div class="about">
     <div class="hero is-info">
       <div class="hero-body has-text-centered">
@@ -11,3 +13,13 @@
     </section>
   </div>
 </template>
+
+<script>
+import Nav from '@/components/Nav'
+
+export default {
+      components: {
+      Nav
+    }
+}
+</script>

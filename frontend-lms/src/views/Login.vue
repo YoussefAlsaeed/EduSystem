@@ -1,4 +1,6 @@
 <template>
+    <Nav />
+
     <div class="login">
         <div class="hero is-info">
             <div class="hero-body has-text-centered">
@@ -47,8 +49,13 @@
 
 <script>
 import { userMicroSvc } from '../apiClients.js';
+import Nav from '@/components/Nav'
 
 export default {
+
+    components: {
+        Nav
+    },
     data() {
         return {
             email: '',
@@ -70,13 +77,13 @@ export default {
 
                     switch (response.data.userType) {
                         case 'Admin':
-                            this.$router.push({ name: 'admin', params: { id: response.data.userID }});
+                            this.$router.push({ name: 'admin', params: { id: response.data.userID } });
                             break;
                         case 'Instructor':
-                            this.$router.push({ name: 'instructor', params: { id: response.data.userID }});
+                            this.$router.push({ name: 'instructor', params: { id: response.data.userID } });
                             break;
                         case 'Student':
-                            this.$router.push({name: 'student', params: { id: response.data.userID },query: {userData: JSON.stringify(response.data) }});
+                            this.$router.push({ name: 'student', params: { id: response.data.userID } });
                             break;
                         default:
                             console.error('Invalid userType');

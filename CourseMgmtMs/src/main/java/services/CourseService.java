@@ -1,6 +1,7 @@
 package services;
 
 import models.*;
+import requests.CourseEditRequest;
 import util.UserMicroSvcUtil;
 
 import javax.ejb.Stateless;
@@ -47,32 +48,32 @@ public class CourseService {
         }
     }
 
-    public boolean editCourseName(Long courseId, String newName, Long adminId) {
-        Course course = entityManager.find(Course.class, courseId);
+    public boolean editCourse(CourseEditRequest request) {
+        Course course = entityManager.find(Course.class, request.getCourseId());
 
         if (course == null) {
-            System.out.println("Course with ID: " + courseId + " not found.");
+            System.out.println("Course with ID: " + request.getCourseId() + " not found.");
             return false;
         }
 
-        // Check if the new course name already exists
-        Course existingCourse = findCourseByName(newName);
-        if (existingCourse != null && !existingCourse.getCourseId().equals(courseId)) {
-            System.out.println("Course with name: " + newName + " already exists.");
+        Course existingCourse = findCourseByName(request.getNewName());
+        if (existingCourse != null && !existingCourse.getCourseId().equals(request.getCourseId())) {
+            System.out.println("Course with name: " + request.getNewName() + " already exists.");
             return false;
         }
-        //Checking if user is authorized
-        if (!userMicroSvcUtil.isUserAdmin(adminId) ) {
+        if (!userMicroSvcUtil.isUserAdmin(request.getAdminId())) {
             System.out.println("User is not authorized to edit this course.");
             return false;
         }
-
-        // Update the course name
         entityManager.getTransaction().begin();
-        course.setName(newName);
+        course.setName(request.getNewName());
+        course.setDuration(request.getNewDuration());
+        course.setCategory(request.getNewCategory());
+        course.setCapacity(request.getNewCapacity());
         entityManager.getTransaction().commit();
         return true;
     }
+
 
     public boolean deleteCourse(Long courseId, Long adminId) {
         Course course = entityManager.find(Course.class, courseId);
