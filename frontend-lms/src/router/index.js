@@ -9,7 +9,8 @@ import Instructor from '../views/Instructor.vue'
 import Student from '../views/Student.vue'
 import UserManagement from '../views/UserManagement.vue'
 import CourseManagement from '../views/CourseManagement.vue'
-
+import CourseDetails from '../views/CourseDetails.vue'
+import CourseEnrollment from "@/views/CourseEnrollment.vue";
 
 const routes = [
   {
@@ -67,6 +68,19 @@ const routes = [
     component: CourseManagement,
     props: true
   }
+  ,
+  {
+    path: '/course/:courseData',
+    name: 'CourseDetails',
+    component: CourseDetails,
+    props: true
+  },
+  {
+    path: '/course/:courseId/:instructorId/enrollment',
+    name: 'CourseEnrollment',
+    component: CourseEnrollment,
+    props: true
+  },
 ]
 
 const router = createRouter({
