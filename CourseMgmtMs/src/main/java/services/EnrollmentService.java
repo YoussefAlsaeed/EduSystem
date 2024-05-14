@@ -110,11 +110,14 @@ public class EnrollmentService {
             System.out.println("Instructor with id " + instructorId + " is not authorized to accept this enrollment.");
             return false;
         }
+        entityManager.getTransaction().begin();
 
         enrollment.setStatus(EnrollmentStatus.ACCEPTED);
         course.setEnrolledStudents(course.getEnrolledStudents() + 1);
 
         entityManager.merge(enrollment);
+        entityManager.merge(course);
+        entityManager.getTransaction().commit();
 
         NotifyRequest request =  new NotifyRequest();
         request.setInstructorId(instructorId);
@@ -124,7 +127,6 @@ public class EnrollmentService {
         notifyMicroSvcUtil.sendNotification(request);
         return true;
     }
-
     public boolean rejectEnrollment(Long enrollmentId, Long instructorId) {
         Enrollment enrollment = entityManager.find(Enrollment.class, enrollmentId);
         if (enrollment == null) {

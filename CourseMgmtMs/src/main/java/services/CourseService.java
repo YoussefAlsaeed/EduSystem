@@ -163,6 +163,7 @@ public class CourseService {
         // Update the course content review status to REJECTED
         entityManager.getTransaction().begin();
         course.setContentReviewed(Course.ContentReviewStatus.REJECTED);
+        entityManager.merge(course);
         entityManager.getTransaction().commit();
         return true;
     }
@@ -184,6 +185,7 @@ public class CourseService {
         // Update the course content review status to REJECTED
         entityManager.getTransaction().begin();
         course.setContentReviewed(Course.ContentReviewStatus.ACCEPTED);
+        entityManager.merge(course);
         entityManager.getTransaction().commit();
         return true;
     }
@@ -215,7 +217,7 @@ public class CourseService {
         // Calculate new average rating
         double newRating = (course.getRating() + rating) / totalRates;
         course.setRating(newRating);
-
+        entityManager.merge(course);
         entityManager.getTransaction().commit();
         return true;
     }

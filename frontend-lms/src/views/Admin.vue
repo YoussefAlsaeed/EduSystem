@@ -9,7 +9,6 @@
       <section class="section">
         <div class="container">
           <div class="columns">
-            <!-- User Management -->
             <div class="column is-one-third">
               <div class="card">
                 <div class="card-content">
@@ -19,7 +18,6 @@
                 </div>
               </div>
             </div>
-            <!-- Course Management -->
             <div class="column is-one-third">
               <div class="card">
                 <div class="card-content">
@@ -29,7 +27,6 @@
                 </div>
               </div>
             </div>
-            <!-- Platform Usage -->
             <div class="column is-one-third">
               <div class="card">
                 <div class="card-content">
@@ -71,7 +68,7 @@
       viewUserAccounts() {
         this.$router.push({ name: 'UserManagement', params: { id: this.$route.params.id } });},
       reviewCourses() {
-        this.$router.push({ name: 'CourseManagement', params: { id: this.$route.params.id } });      },
+        this.$router.push({ name: 'CourseManagement', params: { id: this.$route.params.id } });},
       trackUsage() {
         // Logic to navigate to platform usage page
       }
@@ -79,5 +76,28 @@
   }
   </script>
   
-  <style></style>
+  <style>
+body {
+  background-color: #14161a;
+  color: #f5f5f5;
+}
+
+.hero.is-info {
+  background-color: #36454F;
+}
+
+.card {
+  background-color: #36454F;
+}
+
+.button.is-info {
+  background-color: #3273dc;
+  color: #f5f5f5;
+}
+
+.title, .subtitle {
+  color: #f5f5f5;
+}
+
+</style>
   
