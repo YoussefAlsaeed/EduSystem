@@ -70,8 +70,7 @@
       reviewCourses() {
         this.$router.push({ name: 'CourseManagement', params: { id: this.$route.params.id } });},
       trackUsage() {
-        // Logic to navigate to platform usage page
-      }
+        this.$router.push({ name: 'UsageManagement', params: { id: this.$route.params.id } });}
     }
   }
   </script>

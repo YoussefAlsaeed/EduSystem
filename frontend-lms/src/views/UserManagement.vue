@@ -54,8 +54,6 @@
         const id = this.$route.params.id;
         const type = 'Admin';
         
-        console.log("type is " + type)
-
         userMicroSvc.get(`/users/${type}/${id}`)
           .then(response => {
             this.user = response.data;

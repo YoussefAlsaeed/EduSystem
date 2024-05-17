@@ -5,7 +5,7 @@ const userMicroSvc = axios.create({
 });
 
 const courseMicroSvc = axios.create({
-  baseURL: 'http://localhost:8080/CourseMgmtMs/api',
+  baseURL: 'http://localhost:8080/CourseMgmtMs-1.0/api',
 });
 
 const notifyMicroSvc = axios.create({

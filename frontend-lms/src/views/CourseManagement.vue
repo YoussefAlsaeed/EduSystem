@@ -38,11 +38,9 @@
             </div>
         </section>
 
-        <!-- Modal for editing course -->
         <div class="modal" :class="{ 'is-active': isEditing }">
             <div class="modal-background"></div>
             <div class="modal-content">
-                <!-- Form for editing course -->
                 <form @submit.prevent="submitEdit">
                     <div class="field">
                         <label class="label">New Name</label>
@@ -171,5 +169,4 @@ export default {
 
 
 <style scoped>
-/* Add component-specific styles here */
 </style>

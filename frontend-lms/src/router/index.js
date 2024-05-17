@@ -9,7 +9,10 @@ import Instructor from '../views/Instructor.vue'
 import Student from '../views/Student.vue'
 import UserManagement from '../views/UserManagement.vue'
 import CourseManagement from '../views/CourseManagement.vue'
-
+import UsageManagement from '../views/UsageManagement.vue'
+import CourseDetails from '../views/CourseDetails.vue'
+import CourseEnrollment from "@/views/CourseEnrollment.vue";
+import StudentsCourseDetails from "@/views/StudentsCourseDetails.vue"
 
 const routes = [
   {
@@ -65,6 +68,31 @@ const routes = [
     path: '/CourseManagement/:id',
     name: 'CourseManagement',
     component: CourseManagement,
+    props: true
+  },
+  {
+    path: '/UsageManagement/:id',
+    name: 'UsageManagement',
+    component: UsageManagement,
+    props: true
+  }
+  ,
+  {
+    path: '/course/:courseData',
+    name: 'CourseDetails',
+    component: CourseDetails,
+    props: true
+  },
+  {
+    path: '/course/:courseId/:instructorId/enrollment',
+    name: 'CourseEnrollment',
+    component: CourseEnrollment,
+    props: true
+  },
+  ,  {
+    path: '/course/:studentId/:courseData',
+    name: 'StudentsCourseDetails',
+    component: StudentsCourseDetails,
     props: true
   }
 ]

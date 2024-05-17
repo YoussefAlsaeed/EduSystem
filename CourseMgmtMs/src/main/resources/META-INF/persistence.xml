@@ -9,6 +9,7 @@
         <class>models.Course</class>
         <class>models.Reviews</class>
         <class>models.Enrollment</class>
+        <class>models.Logs</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>

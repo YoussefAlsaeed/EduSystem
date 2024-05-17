@@ -20,7 +20,6 @@ import java.util.List;
 @Api(value = "Course service")
 
 public class CourseController {
-
     @Inject
     private CourseService courseService ;
 
@@ -149,10 +148,30 @@ public class CourseController {
     }
 
     @GET
+    @Path("/searchCoursesByNameAndInstructor/{name}/{instructorId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response searchCoursesByNameAndInstructor(@PathParam("name") String name,@PathParam("instructorId") Long instructorId) {
+        List<Course> courses = courseService.searchCoursesByNameAndInstructor(name,instructorId);
+        return Response.status(Response.Status.OK)
+                .entity(courses)
+                .build();
+    }
+
+    @GET
     @Path("/searchCoursesByCategory/{category}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchCoursesByCategory(@PathParam("category") String category) {
         List<Course> courses = courseService.searchCoursesByCategory(category);
+        return Response.status(Response.Status.OK)
+                .entity(courses)
+                .build();
+    }
+
+    @GET
+    @Path("/searchCoursesByCategoryAndInstructor/{category}/{instructorId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response searchCoursesByCategory(@PathParam("category") String category,@PathParam("instructorId") Long instructorId) {
+        List<Course> courses = courseService.searchCoursesByCategoryAndInstructor(category,instructorId);
         return Response.status(Response.Status.OK)
                 .entity(courses)
                 .build();
@@ -210,6 +229,17 @@ public class CourseController {
             return Response.status(Response.Status.FORBIDDEN)
                     .entity("Failed to add review.")
                     .build();
+        }
+    }
+
+    @DELETE
+    @Path("/instructor/{instructorId}")
+    public Response deleteCoursesByInstructor(@PathParam("instructorId") Long instructorId) {
+        boolean deleted = courseService.deleteCoursesByInstructorId(instructorId);
+        if (deleted) {
+            return Response.noContent().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 }

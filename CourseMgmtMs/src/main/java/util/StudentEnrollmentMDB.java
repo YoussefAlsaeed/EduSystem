@@ -1,6 +1,7 @@
 package util;
 
 import models.Enrollment;
+import models.Logs;
 import requests.EnrollmentMessage;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -29,6 +30,7 @@ public class StudentEnrollmentMDB implements MessageListener {
     @Override
     public void onMessage(Message message) {
         if (message instanceof ObjectMessage) {
+            Logs log = new Logs();
             ObjectMessage objectMessage = (ObjectMessage) message;
             try {
                 EnrollmentMessage enrollmentMessage = (EnrollmentMessage) objectMessage.getObject();
@@ -36,7 +38,10 @@ public class StudentEnrollmentMDB implements MessageListener {
                 enrollment.setCourseId(enrollmentMessage.getCourseId());
                 enrollment.setStudentId(enrollmentMessage.getStudentId());
                 enrollment.setStatus(enrollmentMessage.getStatus());
+                String msg ="Student with id " + enrollmentMessage.getStudentId() +" requested to enroll in course with id "+ enrollmentMessage.getCourseId();
+                log.setMessage(msg);
                 entityManager.persist(enrollment);
+                entityManager.persist(log);
             } catch (JMSException e) {
                 e.printStackTrace();
             }

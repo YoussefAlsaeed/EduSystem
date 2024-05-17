@@ -28,7 +28,7 @@ public class CourseService {
 
     public boolean createCourse(Course course) {
         Course existingCourse = findCourseByName(course.getName());
-
+        Logs log = new Logs();
         if (existingCourse != null) {
             System.out.println("Course with name: " + existingCourse.getName() + " already exists.");
             return false;
@@ -41,6 +41,11 @@ public class CourseService {
             course.setEnrolledStudents(0);
             course.setTotalRates(0);
             entityManager.persist(course);
+
+            String message = "Instructor with id " + course.getInstructorId() + " has created course " + course.getName() + " , course id : " + course.getCourseId();
+            log.setMessage(message);
+
+            entityManager.persist(log);
             entityManager.getTransaction().commit();
             return true; // Course created successfully
         } else {
@@ -95,12 +100,14 @@ public class CourseService {
 
     // for admin
     public List<Course> getAllCourses() {
+        entityManager.clear();
         Query query = entityManager.createQuery("SELECT c FROM Course c", Course.class);
         return query.getResultList();
     }
 
     // for student + instructor
     public List<Course> getAllReviewedCourses() {
+        entityManager.clear();
         Query query = entityManager.createQuery("SELECT c FROM Course c WHERE c.contentReviewed = :status", Course.class);
         query.setParameter("status", Course.ContentReviewStatus.ACCEPTED);
         return query.getResultList();
@@ -109,6 +116,7 @@ public class CourseService {
     // instructor
 
     public List<Course> getCoursesByInstructor(Long instructorId) {
+        entityManager.clear();
         Query query = entityManager.createQuery("SELECT c FROM Course c WHERE c.instructorId = :instructorId", Course.class);
         query.setParameter("instructorId", instructorId);
         return query.getResultList();
@@ -123,6 +131,18 @@ public class CourseService {
         return query.getResultList();
     }
 
+    public List<Course> searchCoursesByNameAndInstructor(String name, Long instructorId) {
+        Query query = entityManager.createQuery(
+                "SELECT c FROM Course c WHERE c.name LIKE :name AND c.contentReviewed = :status AND c.instructorId = :instructorId",
+                Course.class
+        );
+        query.setParameter("name", "%" + name + "%");
+        query.setParameter("status", Course.ContentReviewStatus.ACCEPTED);
+        query.setParameter("instructorId", instructorId);
+        return query.getResultList();
+    }
+
+
     // for student + instructor
     public List<Course> searchCoursesByCategory(String category) {
         Query query = entityManager.createQuery("SELECT c FROM Course c WHERE c.category LIKE :category AND c.contentReviewed = :status", Course.class);
@@ -131,7 +151,35 @@ public class CourseService {
         return query.getResultList();
     }
 
-    // for student + instructor
+    public boolean deleteCoursesByInstructorId(Long instructorId) {
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("DELETE FROM Course c WHERE c.instructorId = :instructorId");
+            query.setParameter("instructorId", instructorId);
+            entityManager.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Course> searchCoursesByCategoryAndInstructor(String category, Long instructorId) {
+        Query query = entityManager.createQuery(
+                "SELECT c FROM Course c WHERE c.category LIKE :category AND c.contentReviewed = :status AND c.instructorId = :instructorId",
+                Course.class
+        );
+        query.setParameter("category", "%" + category + "%");
+        query.setParameter("status", Course.ContentReviewStatus.ACCEPTED);
+        query.setParameter("instructorId", instructorId);
+        return query.getResultList();
+    }
+
+
+    // for student
     public List<Course> sortByRatings() throws JMSException {
         Query query = entityManager.createQuery("SELECT c FROM Course c WHERE c.contentReviewed = :status ORDER BY c.rating DESC", Course.class);
         query.setParameter("status", Course.ContentReviewStatus.ACCEPTED);
@@ -224,7 +272,7 @@ public class CourseService {
 
     public boolean addReview(Reviews review) {
         Course course = entityManager.find(Course.class, review.getCourseId());
-
+        Logs log = new Logs();
         if (!userMicroSvcUtil.isUserStudent(review.getStudentId())) {
             System.out.println("User is not authorized to add review to course .");
             return false;
@@ -239,9 +287,11 @@ public class CourseService {
             System.out.println("Course content is not yet accepted. Cannot add review.");
             return false;
         }
-
+        String message = "Student with id " + review.getStudentId() + " added a review for course with id " + course.getCourseId();
+        log.setMessage(message);
         entityManager.getTransaction().begin();
         entityManager.persist(review);
+        entityManager.persist(log);
         entityManager.getTransaction().commit();
         return true;
     }

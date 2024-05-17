@@ -3,6 +3,7 @@ package services;
 import models.Course;
 import models.Enrollment;
 import models.EnrollmentStatus;
+import models.Logs;
 import requests.EnrollmentMessage;
 import requests.NotifyRequest;
 import util.NotifyMicroSvcUtil;
@@ -96,6 +97,7 @@ public class EnrollmentService {
 
     public boolean acceptEnrollment(Long enrollmentId, Long instructorId) {
         Enrollment enrollment = entityManager.find(Enrollment.class, enrollmentId);
+        Logs log = new Logs();
         if (enrollment == null) {
             System.out.println("Enrollment with id " + enrollmentId + " does not exist.");
             return false;
@@ -110,6 +112,7 @@ public class EnrollmentService {
             System.out.println("Instructor with id " + instructorId + " is not authorized to accept this enrollment.");
             return false;
         }
+        String msg = "Instructor with id " + instructorId + " accepted enrollment for course " + course.getName() + " for student with id "+ enrollment.getStudentId();
         entityManager.getTransaction().begin();
 
         enrollment.setStatus(EnrollmentStatus.ACCEPTED);
@@ -117,6 +120,9 @@ public class EnrollmentService {
 
         entityManager.merge(enrollment);
         entityManager.merge(course);
+
+        log.setMessage(msg);
+        entityManager.persist(log);
         entityManager.getTransaction().commit();
 
         NotifyRequest request =  new NotifyRequest();
@@ -129,6 +135,8 @@ public class EnrollmentService {
     }
     public boolean rejectEnrollment(Long enrollmentId, Long instructorId) {
         Enrollment enrollment = entityManager.find(Enrollment.class, enrollmentId);
+        Logs log = new Logs();
+
         if (enrollment == null) {
             System.out.println("Enrollment with id " + enrollmentId + " does not exist.");
             return false;
@@ -145,9 +153,12 @@ public class EnrollmentService {
             return false;
         }
 
+        String msg = "Instructor with id " + instructorId + " rejected enrollment for course " + course.getName() + " for student with id "+ enrollment.getStudentId();
+        log.setMessage(msg);
+        entityManager.persist(log);
+
         enrollment.setStatus(EnrollmentStatus.REJECTED);
         entityManager.merge(enrollment);
-
         NotifyRequest request =  new NotifyRequest();
         request.setInstructorId(instructorId);
         request.setStudentId(enrollment.getStudentId());
@@ -160,6 +171,7 @@ public class EnrollmentService {
 
     public boolean cancelEnrollment(Long enrollmentId, Long studentId) {
         Enrollment enrollment = entityManager.find(Enrollment.class, enrollmentId);
+        Logs log = new Logs();
         if (enrollment == null) {
             System.out.println("Enrollment with id " + enrollmentId + " does not exist.");
             return false;
@@ -170,9 +182,11 @@ public class EnrollmentService {
             System.out.println("User is not authorized to cancel this enrollment.");
             return false;
         }
-
+        String msg = "Student with id " + studentId + " cancelled his enrollment for course " + course.getName() ;
+        log.setMessage(msg);
         enrollment.setStatus(EnrollmentStatus.CANCELLED);
         entityManager.merge(enrollment);
+        entityManager.persist(log);
         return true;
     }
 }

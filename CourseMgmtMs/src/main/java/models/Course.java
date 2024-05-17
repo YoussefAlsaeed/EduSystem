@@ -14,8 +14,8 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseId;
 
-    @OneToMany(mappedBy = "courseId", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "courseId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JsonIgnore
     private List<Reviews> reviews;
 
     @OneToMany(mappedBy = "courseId", cascade = CascadeType.ALL)
@@ -29,13 +29,19 @@ public class Course {
     private int totalRates;
     private int capacity;
     private int enrolledStudents;
+
     public enum ContentReviewStatus {
         ACCEPTED,
         REJECTED,
         PENDING
     }
+
     @Enumerated(EnumType.STRING)
     private ContentReviewStatus contentReviewed;
     private Long instructorId;
+
+    public void addToReviews(Reviews rev){
+        this.reviews.add(rev);
+    }
 
 }
