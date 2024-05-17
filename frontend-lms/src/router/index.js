@@ -11,6 +11,7 @@ import UserManagement from '../views/UserManagement.vue'
 import CourseManagement from '../views/CourseManagement.vue'
 import CourseDetails from '../views/CourseDetails.vue'
 import CourseEnrollment from "@/views/CourseEnrollment.vue";
+import StudentsCourseDetails from '@/views/StudentsCourseDetails.vue'
 
 const routes = [
   {
@@ -73,6 +74,11 @@ const routes = [
     path: '/course/:courseData',
     name: 'CourseDetails',
     component: CourseDetails,
+    props: true
+  },  {
+    path: '/course/:studentId/:courseData',
+    name: 'StudentsCourseDetails',
+    component: StudentsCourseDetails,
     props: true
   },
   {
