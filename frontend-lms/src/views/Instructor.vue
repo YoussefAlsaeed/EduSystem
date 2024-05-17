@@ -58,9 +58,7 @@
         <div class="columns is-multiline">
           <!-- Existing course cards -->
           <div v-for="course in courses" :key="course.courseId" class="column is-one-third course-card"
-            @click="openPopup(course)">
-            <PopupComponent v-if="showPopup" @close="showPopup = false"></PopupComponent>
-
+            @click="openCourse(course)">
             <div class="card" @mouseover="hover = true" @mouseleave="hover = false" :class="{ 'hover': hover }">
               <header class="card-header">
                 <div class="card-header-icon">
@@ -203,17 +201,11 @@ export default {
       searchName: '',
       searchCategory: '',
       searchResults: [],
-      sortByRatings: false, // Initially not sorting by ratings
-      showPopup: false
-
+      sortByRatings: false // Initially not sorting by ratings
 
     };
   },
   methods: {
-    openPopup() {
-      // Open the popup component
-      this.showPopup = true;
-    },
     toggleSearch(type) {
       // Clear the search field value based on the selected search type
       if (type === 'name') {
