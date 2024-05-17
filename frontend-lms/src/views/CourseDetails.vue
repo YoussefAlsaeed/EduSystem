@@ -8,7 +8,7 @@
     </section>
 
     <div class="box">
-      <div class="content">
+      <div class="content">x
         <h3 class="title is-4">Course Information</h3>
         <p><strong>Duration:</strong> {{ courseData.duration }}</p>
         <p><strong>Capacity:</strong> {{ courseData.capacity }}</p>
