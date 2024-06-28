@@ -1,8 +1,8 @@
-docker volume create db-volume
-
 docker network create app-network
 
-docker run --rm -p 3307:3306 -e MYSQL_ROOT_PASSWORD=hello -e MYSQL_PASSWORD=hello -v ./sql-scripts:/docker-entrypoint-initdb.d --name mysqldb --net app-network -d mysql:8.0
+docker build -t mysqldbimg  .
+
+docker run --rm -p 3307:3306 -e MYSQL_ROOT_PASSWORD=hello -e MYSQL_PASSWORD=hello --name mysqldb --net app-network -d mysqldbimg
 
 docker build -t coursesvcimg -f ./CourseMgmtMs/Dockerfile ./CourseMgmtMs
 docker run --rm --name coursesvc -p 8080:8080 -p 9990:9990 -e MYSQL_PASSWORD=hello --net app-network -d coursesvcimg
