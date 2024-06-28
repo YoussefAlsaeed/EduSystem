@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 
 public class NotifyMicroSvcUtil {
 
-    private String notifMgmtBaseUrl = "http://localhost:8090";
+    private String notifMgmtBaseUrl = "http://notifysvc:8090";
 
     public boolean sendNotification(NotifyRequest notifyRequest)
     {

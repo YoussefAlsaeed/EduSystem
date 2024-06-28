@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 
 public class UserMicroSvcUtil {
 
-    private String userMgmtBaseUrl = "http://localhost:8085";
+    private String userMgmtBaseUrl = "http://usersvc:8085";
 
     public boolean isUserInstructor(Long userId) {
         Client client = ClientBuilder.newClient();

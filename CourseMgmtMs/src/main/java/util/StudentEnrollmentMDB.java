@@ -27,24 +27,30 @@ public class StudentEnrollmentMDB implements MessageListener {
         entityManager = emf.createEntityManager();
     }
 
-    @Override
-    public void onMessage(Message message) {
-        if (message instanceof ObjectMessage) {
-            Logs log = new Logs();
-            ObjectMessage objectMessage = (ObjectMessage) message;
-            try {
-                EnrollmentMessage enrollmentMessage = (EnrollmentMessage) objectMessage.getObject();
-                Enrollment enrollment = new Enrollment();
-                enrollment.setCourseId(enrollmentMessage.getCourseId());
-                enrollment.setStudentId(enrollmentMessage.getStudentId());
-                enrollment.setStatus(enrollmentMessage.getStatus());
-                String msg ="Student with id " + enrollmentMessage.getStudentId() +" requested to enroll in course with id "+ enrollmentMessage.getCourseId();
-                log.setMessage(msg);
-                entityManager.persist(enrollment);
-                entityManager.persist(log);
-            } catch (JMSException e) {
-                e.printStackTrace();
+@Override
+public void onMessage(Message message) {
+    if (message instanceof ObjectMessage) {
+        Logs log = new Logs();
+        ObjectMessage objectMessage = (ObjectMessage) message;
+        try {
+            EnrollmentMessage enrollmentMessage = (EnrollmentMessage) objectMessage.getObject();
+            Enrollment enrollment = new Enrollment();
+            enrollment.setCourseId(enrollmentMessage.getCourseId());
+            enrollment.setStudentId(enrollmentMessage.getStudentId());
+            enrollment.setStatus(enrollmentMessage.getStatus());
+            String msg = "Student with id " + enrollmentMessage.getStudentId() + " requested to enroll in course with id " + enrollmentMessage.getCourseId();
+            log.setMessage(msg);
+            
+            entityManager.getTransaction().begin(); // Start transaction
+            entityManager.persist(enrollment);
+            entityManager.persist(log);
+            entityManager.getTransaction().commit(); // Commit transaction
+        } catch (JMSException e) {
+            e.printStackTrace();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback(); // Rollback transaction in case of exception
             }
         }
     }
+}
 }
