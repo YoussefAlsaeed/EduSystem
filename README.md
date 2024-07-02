@@ -64,26 +64,27 @@ To run the project using Docker:
 - REST APIs
 
 ## Directory Structure
-
-EduSystem/
-├── CourseMgmtMs/
-│ ├── src/
-│ ├── Dockerfile
-│ └── ...
-├── NotifMgmtMs/
-│ ├── src/
-│ ├── Dockerfile
-│ └── ...
-├── UserMgmtMs/
-│ ├── src/
-│ ├── Dockerfile
-│ └── ...
-├── frontend-lms/
-│ ├── src/
-│ ├── Dockerfile
-│ └── ...
-├── dockerize.bat
-└── README.md
+```bash
+   EduSystem/
+   ├── CourseMgmtMs/
+   │   ├── src/
+   │   ├── Dockerfile
+   │   └── ...
+   ├── NotifMgmtMs/
+   │   ├── src/
+   │   ├── Dockerfile
+   │   └── ...
+   ├── UserMgmtMs/
+   │   ├── src/
+   │   ├── Dockerfile
+   │   └── ...
+   ├── frontend-lms/
+   │   ├── src/
+   │   ├── Dockerfile
+   │   └── ...
+   ├── dockerize.bat
+   └── README.md
+```
 
 ## Conclusion
 This project demonstrates the implementation of an online learning platform using EJBs and microservices architecture. The use of Docker ensures easy deployment and management of the microservices.    
